@@ -64,6 +64,7 @@
     dispatch_resume(_timer);
 }
 - (void)execute{
+    #pragma clang diagnostic push
     #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
     if (_target && _repeat) {
         [_target performSelector:_selector withObject:_selectorInfo];
@@ -71,6 +72,7 @@
         [_target performSelector:_selector withObject:_selectorInfo];
         dispatch_source_cancel(_timer);
     }
+    #pragma clang diagnostic pop
 }
 
 - (void)invalidate{
